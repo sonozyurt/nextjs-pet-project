@@ -1,37 +1,36 @@
 'use client';
-import { ExpandLess, ExpandMore, StarBorder } from '@mui/icons-material';
+import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import {
   Collapse,
   List,
+  ListItem,
   ListItemButton,
   ListItemIcon,
-  ListItemText,
 } from '@mui/material';
-import CategoryIcon from '@mui/icons-material/Category';
 import { useState } from 'react';
+import PillContent from './PillContent';
 
-export default function CategoryPill() {
+export default function CategoryPill({ index }: any) {
   const [open, setOpen] = useState(true);
 
-  const handleClick = () => {
+  const handleExpand = () => {
     setOpen(!open);
   };
   return (
     <>
-      <ListItemButton onClick={handleClick}>
-        <ListItemIcon>
-          <CategoryIcon />
+      <ListItem>
+        <ListItemIcon
+          sx={{ cursor: 'pointer', minWidth: 0, mr: '10px' }}
+          onClick={handleExpand}
+        >
+          {open ? <ExpandLess /> : <ExpandMore />}
         </ListItemIcon>
-        <ListItemText primary='Inbox' />
-        {open ? <ExpandLess /> : <ExpandMore />}
-      </ListItemButton>
+        <PillContent index={index} />
+      </ListItem>
       <Collapse in={open} timeout='auto' unmountOnExit>
         <List component='div' disablePadding>
-          <ListItemButton sx={{ pl: 4 }}>
-            <ListItemIcon>
-              <StarBorder />
-            </ListItemIcon>
-            <ListItemText primary='Starred' />
+          <ListItemButton sx={{ pl: '50px' }}>
+            <PillContent index={index} />
           </ListItemButton>
         </List>
       </Collapse>
