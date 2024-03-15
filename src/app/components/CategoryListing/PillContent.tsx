@@ -12,7 +12,7 @@ import { useState } from 'react';
 export default function PillContent({ index }: any) {
   const [isEditMode, setIsEditMode] = useState(false);
 
-  const [categoryName, setCategoryName] = useState(`Category ${index + 1}.1`);
+  const [categoryName, setCategoryName] = useState(`Category ${index}.1`);
 
   const handleCategoryChange = (event: any) => {
     setCategoryName(event.target.value);

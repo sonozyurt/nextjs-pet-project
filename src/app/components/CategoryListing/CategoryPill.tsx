@@ -1,6 +1,6 @@
-'use client';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import {
+  Box,
   Collapse,
   List,
   ListItem,
@@ -10,12 +10,17 @@ import {
 import { useState } from 'react';
 import PillContent from './PillContent';
 
-export default function CategoryPill({ index }: any) {
-  const [open, setOpen] = useState(true);
+interface CategoryPillProps {
+  index: number;
+  handle: (index: number) => void;
+}
 
+export default function CategoryPill({ index, handle }: CategoryPillProps) {
+  const [open, setOpen] = useState(true);
   const handleExpand = () => {
     setOpen(!open);
   };
+
   return (
     <>
       <ListItem>
@@ -27,9 +32,10 @@ export default function CategoryPill({ index }: any) {
         </ListItemIcon>
         <PillContent index={index} />
       </ListItem>
+
       <Collapse in={open} timeout='auto' unmountOnExit>
         <List component='div' disablePadding>
-          <ListItemButton sx={{ pl: '50px' }}>
+          <ListItemButton sx={{ pl: '50px' }} onClick={() => handle(index)}>
             <PillContent index={index} />
           </ListItemButton>
         </List>

@@ -8,8 +8,7 @@ import Grid from '@mui/material/Grid';
 import { Edit } from '@mui/icons-material';
 import { ListItemIcon, ListSubheader } from '@mui/material';
 
-export default async function TaskItemList() {
-  const tasks = [1, 2, 3, 4, 5];
+export default function TaskItemList({ tasks }: any) {
   return (
     <Box>
       <Grid item xs={12} md={6}>
@@ -17,10 +16,10 @@ export default async function TaskItemList() {
           <List
             subheader={<ListSubheader component='div'>Tasks</ListSubheader>}
           >
-            {tasks.map((task) => {
+            {tasks.map((task: any) => {
               return (
                 <ListItem
-                  key={task}
+                  key={task.id}
                   secondaryAction={
                     <IconButton edge='end'>
                       <Edit />
@@ -30,7 +29,7 @@ export default async function TaskItemList() {
                   <ListItemIcon>
                     <Checkbox />
                   </ListItemIcon>
-                  <ListItemText primary='Single-line item' />
+                  <ListItemText primary={`Single-line item ${task.id}`} />
                 </ListItem>
               );
             })}
