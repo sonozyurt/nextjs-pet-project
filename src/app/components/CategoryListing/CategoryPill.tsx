@@ -12,10 +12,13 @@ import PillContent from './PillContent';
 
 interface CategoryPillProps {
   index: number;
-  handle: (index: number) => void;
+  tasksToggleFunc: (index: number) => void;
 }
 
-export default function CategoryPill({ index, handle }: CategoryPillProps) {
+export default function CategoryPill({
+  index,
+  tasksToggleFunc,
+}: CategoryPillProps) {
   const [open, setOpen] = useState(true);
   const handleExpand = () => {
     setOpen(!open);
@@ -35,7 +38,10 @@ export default function CategoryPill({ index, handle }: CategoryPillProps) {
 
       <Collapse in={open} timeout='auto' unmountOnExit>
         <List component='div' disablePadding>
-          <ListItemButton sx={{ pl: '50px' }} onClick={() => handle(index)}>
+          <ListItemButton
+            sx={{ pl: '50px' }}
+            onClick={() => tasksToggleFunc(index)}
+          >
             <PillContent index={index} />
           </ListItemButton>
         </List>

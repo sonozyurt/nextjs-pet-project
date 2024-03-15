@@ -6,12 +6,13 @@ import { useState } from 'react';
 import { Box } from '@mui/material';
 import TaskItemList from '../TaskItems/TaskItemList';
 import categories from '@/mockData/mockData';
+
 export default function CategoryListing() {
-  const [isAnyTaskOpen, setIsAnyTaskOpen] = useState(false);
+  const [isTasksOpen, setIsTasksOpen] = useState(false);
   const [currentTasks, setCurrentTasks] = useState([{ id: 0 }]);
-  function handle(catIndex: any) {
-    setIsAnyTaskOpen(!isAnyTaskOpen);
-    setCurrentTasks(categories[catIndex - 1].tasks);
+  function toggleTasks(catIndex: any) {
+    setIsTasksOpen(!isTasksOpen);
+    setCurrentTasks(categories[catIndex].tasks);
   }
   return (
     <>
@@ -20,10 +21,14 @@ export default function CategoryListing() {
         component='div'
         subheader={<ListSubheader component='div'>Categories</ListSubheader>}
       >
-        {categories.map((cat, i) => (
-          <CategoryPill key={cat.index} index={cat.index} handle={handle} />
+        {categories.map((cat) => (
+          <CategoryPill
+            key={cat.index}
+            index={cat.index}
+            tasksToggleFunc={toggleTasks}
+          />
         ))}
-        {isAnyTaskOpen && (
+        {isTasksOpen && (
           <Box position={'absolute'} left={'350px'} top={0} width={'100%'}>
             <TaskItemList tasks={currentTasks} />
           </Box>
