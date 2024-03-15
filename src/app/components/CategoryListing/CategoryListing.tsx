@@ -10,7 +10,7 @@ import categories from '@/mockData/mockData';
 export default function CategoryListing() {
   const [isTasksOpen, setIsTasksOpen] = useState(false);
   const [currentTasks, setCurrentTasks] = useState([{ id: 0 }]);
-  function toggleTasks(catIndex: any) {
+  function toggleTasks(catIndex: number) {
     setIsTasksOpen(!isTasksOpen);
     setCurrentTasks(categories[catIndex].tasks);
   }

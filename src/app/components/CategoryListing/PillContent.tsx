@@ -1,4 +1,5 @@
 'use client';
+import { PillContentProps } from '@/types/types';
 import { Add, Check, Delete, Edit } from '@mui/icons-material';
 import {
   Box,
@@ -9,14 +10,17 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 
-export default function PillContent({ index }: any) {
+export default function PillContent({ index }: PillContentProps) {
   const [isEditMode, setIsEditMode] = useState(false);
 
   const [categoryName, setCategoryName] = useState(`Category ${index}.1`);
 
-  const handleCategoryChange = (event: any) => {
-    setCategoryName(event.target.value);
+  const handleCategoryChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setCategoryName(event.target?.value);
   };
+
   const handleEditOnCategory = () => {
     setIsEditMode(!isEditMode);
   };

@@ -9,11 +9,7 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import PillContent from './PillContent';
-
-interface CategoryPillProps {
-  index: number;
-  tasksToggleFunc: (index: number) => void;
-}
+import { CategoryPillProps } from '@/types/types';
 
 export default function CategoryPill({
   index,

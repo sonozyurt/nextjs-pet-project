@@ -7,8 +7,9 @@ import Checkbox from '@mui/material/Checkbox';
 import Grid from '@mui/material/Grid';
 import { Edit } from '@mui/icons-material';
 import { ListItemIcon, ListSubheader } from '@mui/material';
+import { TaskItemListProps } from '@/types/types';
 
-export default function TaskItemList({ tasks }: any) {
+export default function TaskItemList({ tasks }: TaskItemListProps) {
   return (
     <Box>
       <Grid item xs={12} md={6}>
@@ -16,7 +17,7 @@ export default function TaskItemList({ tasks }: any) {
           <List
             subheader={<ListSubheader component='div'>Tasks</ListSubheader>}
           >
-            {tasks.map((task: any) => {
+            {tasks.map((task) => {
               return (
                 <ListItem
                   key={task.id}
